@@ -1,3 +1,8 @@
+const button = document.querySelector("button");
+const repairList = document.querySelector(".need-repair");
+
+
+
 const createVehicle = function(type, numWheels, color){
 
     const vehicle = {
@@ -23,3 +28,23 @@ for(let wheels of myVehicles ){
         console.log(key, wheels[key]);
     }
 }
+
+bike.needsRepair = true;
+skateboard.needsRepair = true;
+// console.log(skateboard.needsRepair);
+// console.log(bike.needsRepair);
+
+button.addEventListener("click", function(){
+    repairList.innerHTML = "";
+    const vehicleRepairList = myVehicles.filter(vehicle => {
+        return vehicle.needsRepair === true;
+    });
+    
+    for(let repairListLoop in vehicleRepairList){
+        let li = document.createElement("li");
+        li.innerHTML = `my <span> ${repairListLoop.type} needs some ❤`;
+        repairList.append(li);
+    }
+
+});
+
